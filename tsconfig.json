@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@aquasense/common": ["libs/common/src"],
+      "@aquasense/domain": ["libs/domain/src"],
+      "@aquasense/database": ["libs/database/src"]
+    }
+  }
+}
