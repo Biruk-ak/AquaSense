@@ -1,0 +1,9 @@
+{
+  "name": "@aquasense/consumer-portal",
+  "version": "3.8.2",
+  "private": true,
+  "scripts": {
+    "build": "echo build-consumer-portal",
+    "dev": "echo dev-consumer-portal"
+  }
+}
