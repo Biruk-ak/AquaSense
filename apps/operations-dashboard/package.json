@@ -1,0 +1,9 @@
+{
+  "name": "@aquasense/operations-dashboard",
+  "version": "3.8.2",
+  "private": true,
+  "scripts": {
+    "build": "echo build-operations-dashboard",
+    "dev": "echo dev-operations-dashboard"
+  }
+}
