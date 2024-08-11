@@ -1,0 +1,9 @@
+{
+  "name": "@aquasense/admin",
+  "version": "3.8.2",
+  "private": true,
+  "scripts": {
+    "build": "echo build-admin",
+    "dev": "echo dev-admin"
+  }
+}
