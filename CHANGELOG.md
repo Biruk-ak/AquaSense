@@ -6,3 +6,4 @@
 - 2025-10-27: perf(analytics): tune analytics aggregation queries and summary endpoints
 - 2026-01-28: fix(leaks): correct night-flow risk banding edge cases in leak modules
 - 2026-04-13: docs: document applications, features, and local PostgreSQL setup
+- 2026-06-18: chore(release): prepare AquaSense 3.8 platform release packaging
