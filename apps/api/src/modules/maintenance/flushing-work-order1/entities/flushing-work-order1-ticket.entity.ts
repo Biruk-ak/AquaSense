@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class FlushingWorkOrder1Ticket {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -26,22 +25,22 @@ export class FlushingWorkOrder1Ticket {
   @Column({ type: 'varchar' })
   priority: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   assignedCrew?: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   assetId?: string;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   scheduledAt?: Date;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   completedAt?: Date;
 
   @Column({ type: 'varchar' })
   status: string;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   estimatedHours?: number;
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -68,7 +67,7 @@ export class FlushingWorkOrder1Ticket {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.title === undefined || this.title === null || this.title === '') {
+    if (this.title === undefined || this.title === null || (typeof this.title === 'string' && this.title === '')) {
       errors.push('title is required');
     }
     return errors;

@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class HighBillRequest1Case {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -35,7 +34,7 @@ export class HighBillRequest1Case {
   @Column({ type: 'varchar' })
   status: string;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   slaDueAt?: Date;
 
   @Column({ type: 'decimal' })
@@ -64,10 +63,10 @@ export class HighBillRequest1Case {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.accountId === undefined || this.accountId === null || this.accountId === '') {
+    if (this.accountId === undefined || this.accountId === null || (typeof this.accountId === 'string' && this.accountId === '')) {
       errors.push('accountId is required');
     }
-    if (this.subject === undefined || this.subject === null || this.subject === '') {
+    if (this.subject === undefined || this.subject === null || (typeof this.subject === 'string' && this.subject === '')) {
       errors.push('subject is required');
     }
     return errors;

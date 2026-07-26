@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class LeakZone20Alert {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -35,10 +34,10 @@ export class LeakZone20Alert {
   @Column({ type: 'timestamptz' })
   detectedAt: Date;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   resolvedAt?: Date;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   notes?: string;
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -64,10 +63,10 @@ export class LeakZone20Alert {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.zoneCode === undefined || this.zoneCode === null || this.zoneCode === '') {
+    if (this.zoneCode === undefined || this.zoneCode === null || (typeof this.zoneCode === 'string' && this.zoneCode === '')) {
       errors.push('zoneCode is required');
     }
-    if (this.severityLitersPerHour === undefined || this.severityLitersPerHour === null || this.severityLitersPerHour === '') {
+    if (this.severityLitersPerHour === undefined || this.severityLitersPerHour === null || (typeof this.severityLitersPerHour === 'string' && this.severityLitersPerHour === '')) {
       errors.push('severityLitersPerHour is required');
     }
     return errors;

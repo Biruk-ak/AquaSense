@@ -13,7 +13,7 @@ import { AuditService, EventBusService } from '@aquasense/common';
 
 describe('EmailNotificationTemplate2Service', () => {
   let service: EmailNotificationTemplate2Service;
-  const repo = {
+  const repo: any = {
     create: jest.fn((x) => Object.assign(new EmailNotificationTemplate2Message(), x, {
       validateInvariants: () => [],
       toPublicView: () => ({ ...x }),
@@ -63,7 +63,7 @@ describe('EmailNotificationTemplate2Service', () => {
   });
 
   it('lists records with pagination defaults', async () => {
-    repo.findAndCount.mockResolvedValueOnce([[{ id: '1' }], 1]);
+    repo.findAndCount.mockResolvedValueOnce([[{ id: '1' }], 1] as any);
     const result = await service.findAll({});
     expect(result.total).toBe(1);
     expect(result.page).toBe(1);
@@ -104,14 +104,14 @@ describe('EmailNotificationTemplate2Service', () => {
     repo.findAndCount.mockResolvedValueOnce([
       [{ toPublicView: () => ({ id: '1', name: 'A' }), id: '1' }],
       1,
-    ]);
+    ] as any);
     const csv = await service.exportCsv({});
     expect(csv).toContain('id');
     expect(csv).toContain('A');
   });
 
   it('computes summary metrics for a date range', async () => {
-    repo.find.mockResolvedValueOnce([{ id: '1' }, { id: '2' }]);
+    repo.find.mockResolvedValueOnce([{ id: '1' }, { id: '2' }] as any);
     const summary = await service.computeSummary(new Date('2024-01-01'), new Date('2024-01-31'));
     expect(summary.total).toBe(2);
     expect(summary.periodDays).toBeGreaterThan(0);
