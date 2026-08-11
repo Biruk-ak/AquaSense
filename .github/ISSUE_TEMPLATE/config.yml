@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security concern
+    url: mailto:birukaklilu0110@gmail.com
+    about: Privately report security issues instead of opening a public issue.
