@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class CommercialMeterBatch1Reading {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -32,13 +31,13 @@ export class CommercialMeterBatch1Reading {
   @Column({ type: 'timestamptz' })
   readAt: Date;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   qualityFlag?: string;
 
   @Column({ type: 'boolean' })
   tamperDetected: boolean;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   signalStrength?: number;
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -64,13 +63,13 @@ export class CommercialMeterBatch1Reading {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.meterSerial === undefined || this.meterSerial === null || this.meterSerial === '') {
+    if (this.meterSerial === undefined || this.meterSerial === null || (typeof this.meterSerial === 'string' && this.meterSerial === '')) {
       errors.push('meterSerial is required');
     }
-    if (this.readingValue === undefined || this.readingValue === null || this.readingValue === '') {
+    if (this.readingValue === undefined || this.readingValue === null || (typeof this.readingValue === 'string' && this.readingValue === '')) {
       errors.push('readingValue is required');
     }
-    if (this.readAt === undefined || this.readAt === null || this.readAt === '') {
+    if (this.readAt === undefined || this.readAt === null || (typeof this.readAt === 'string' && this.readAt === '')) {
       errors.push('readAt is required');
     }
     return errors;

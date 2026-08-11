@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class FilterAsset2Record {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -26,19 +25,19 @@ export class FilterAsset2Record {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   latitude?: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   longitude?: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   capacity?: number;
 
   @Column({ type: 'varchar' })
   status: string;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', nullable: true })
   lastInspectedAt?: Date;
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -64,10 +63,10 @@ export class FilterAsset2Record {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.assetTag === undefined || this.assetTag === null || this.assetTag === '') {
+    if (this.assetTag === undefined || this.assetTag === null || (typeof this.assetTag === 'string' && this.assetTag === '')) {
       errors.push('assetTag is required');
     }
-    if (this.name === undefined || this.name === null || this.name === '') {
+    if (this.name === undefined || this.name === null || (typeof this.name === 'string' && this.name === '')) {
       errors.push('name is required');
     }
     return errors;

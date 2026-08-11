@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class ConcretePipeSegment3Asset {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -29,13 +28,13 @@ export class ConcretePipeSegment3Asset {
   @Column({ type: 'decimal' })
   lengthM: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   installYear?: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   conditionScore?: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   geometryWkt?: string;
 
   @Column({ type: 'varchar' })
@@ -64,7 +63,7 @@ export class ConcretePipeSegment3Asset {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.segmentCode === undefined || this.segmentCode === null || this.segmentCode === '') {
+    if (this.segmentCode === undefined || this.segmentCode === null || (typeof this.segmentCode === 'string' && this.segmentCode === '')) {
       errors.push('segmentCode is required');
     }
     return errors;

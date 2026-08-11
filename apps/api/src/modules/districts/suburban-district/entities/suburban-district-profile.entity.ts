@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class SuburbanDistrictProfile {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -26,16 +25,16 @@ export class SuburbanDistrictProfile {
   @Column({ type: 'varchar' })
   displayName: string;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', nullable: true })
   populationServed?: number;
 
   @Column({ type: 'boolean' })
   active: boolean;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   boundaryGeoJson?: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   pressureZone?: string;
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -60,10 +59,10 @@ export class SuburbanDistrictProfile {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.code === undefined || this.code === null || this.code === '') {
+    if (this.code === undefined || this.code === null || (typeof this.code === 'string' && this.code === '')) {
       errors.push('code is required');
     }
-    if (this.displayName === undefined || this.displayName === null || this.displayName === '') {
+    if (this.displayName === undefined || this.displayName === null || (typeof this.displayName === 'string' && this.displayName === '')) {
       errors.push('displayName is required');
     }
     return errors;

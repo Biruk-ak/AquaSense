@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class MeterHealthAnalyticsSlice5Snapshot {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -32,7 +31,7 @@ export class MeterHealthAnalyticsSlice5Snapshot {
   @Column({ type: 'timestamptz' })
   capturedAt: Date;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   districtCode?: string;
 
   @CreateDateColumn({ type: 'timestamptz' })
@@ -56,7 +55,7 @@ export class MeterHealthAnalyticsSlice5Snapshot {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.metricKey === undefined || this.metricKey === null || this.metricKey === '') {
+    if (this.metricKey === undefined || this.metricKey === null || (typeof this.metricKey === 'string' && this.metricKey === '')) {
       errors.push('metricKey is required');
     }
     return errors;

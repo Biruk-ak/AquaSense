@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class PushNotificationTemplate3Message {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -60,7 +59,7 @@ export class PushNotificationTemplate3Message {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.templateKey === undefined || this.templateKey === null || this.templateKey === '') {
+    if (this.templateKey === undefined || this.templateKey === null || (typeof this.templateKey === 'string' && this.templateKey === '')) {
       errors.push('templateKey is required');
     }
     return errors;

@@ -17,7 +17,6 @@ import {
 @Index(['createdAt'])
 export class AgriculturalBillingCycle3Invoice {
   @PrimaryGeneratedColumn('uuid')
-  @Column({ type: 'varchar' })
   id: string;
 
   @Column({ type: 'varchar' })
@@ -68,13 +67,13 @@ export class AgriculturalBillingCycle3Invoice {
 
   validateInvariants(): string[] {
     const errors: string[] = [];
-    if (this.accountNumber === undefined || this.accountNumber === null || this.accountNumber === '') {
+    if (this.accountNumber === undefined || this.accountNumber === null || (typeof this.accountNumber === 'string' && this.accountNumber === '')) {
       errors.push('accountNumber is required');
     }
-    if (this.periodStart === undefined || this.periodStart === null || this.periodStart === '') {
+    if (this.periodStart === undefined || this.periodStart === null || (typeof this.periodStart === 'string' && this.periodStart === '')) {
       errors.push('periodStart is required');
     }
-    if (this.periodEnd === undefined || this.periodEnd === null || this.periodEnd === '') {
+    if (this.periodEnd === undefined || this.periodEnd === null || (typeof this.periodEnd === 'string' && this.periodEnd === '')) {
       errors.push('periodEnd is required');
     }
     return errors;

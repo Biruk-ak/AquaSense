@@ -1,0 +1,6 @@
+{
+  "name": "@aquasense/domain",
+  "version": "3.8.2",
+  "private": true,
+  "main": "src/index.ts"
+}
